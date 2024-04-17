@@ -107,7 +107,7 @@ conda install ipykernel
 python -m ipykernel install --user --name=<user_env>
 ```
 
-### How to be nice on HPC
+### How to be nice on HPC :blush:
 - Don't run resource intensive code  on the login node! (very small scripts are fine)
 - Debug something interactively - `srun` but with small time limit and resources
 - Train/evaluate a long script with expected behaviour - `sbatch`
