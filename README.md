@@ -1,7 +1,9 @@
 ## HPC setup
 1. SSH into the server
+```
+ssh  <username>@login1.hpc.ut.ee
+```
 
-`ssh  <username>@login1.hpc.ut.ee `
 2. Create a SSH key pair (so you don't have to type your password every time you log in)
 https://docs.hpc.ut.ee/public/access/ssh/ - create a SSH key pair and add the public key to the server
 
