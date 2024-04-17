@@ -7,16 +7,19 @@ https://docs.hpc.ut.ee/public/access/ssh/ - create a SSH key pair and add the pu
 
 ## Local setup
 1. Clone the repo
-``git clone``
-2. Copy the code to the server
+```
+git clone https://github.com/DzvinkaYarish/HPC_practice.git
+```
+2. Copy the code to HPC
 ```
 scp -r HPC_practice/ <username>@login1.hpc.ut.ee:/gpfs/space/home/<username>/
 ```
 3. Or use IDEs like PyCharm or VSCode to connect to the server and automatically sync the code.
 
 ## And back to HPC
-2. Download the dataset
+Download the dataset
 ```
+cd HPC_practice
 mkdir data
 cd data
 wget https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz && tar -xvzf cifar-10-python.tar.gz
@@ -24,6 +27,7 @@ wget https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz && tar -xvzf cifar-
 ### SLURM job submission
 SLURM is a job scheduler that allows you to submit jobs to the cluster and specify the resources your job requires. 
 This is the very strongly preferred way to run your code on the HPC.
+
 Useful commands
 ```
 sbatch <script.sh> # submit a job
@@ -34,7 +38,7 @@ sacct -j <job_id> --format=Elapsed # check the time your job took
 ```
 
 ### Modules system
-HPC uses Lmod to manage software packages. It has a collection of modules installed on a shared filesystem that's available on all of the nodes in the cluster.
+HPC uses `Lmod` to manage software packages. It has a collection of modules installed on a shared filesystem that's available on all of the nodes in the cluster.
 What loading a module does is just loading different values to your $PATH, $LD_LIBRARY_PATH, etc. Those values correspond to the location of the specific location that's requested by the module. 
 In addition it loads necessary dependencies as modules if needed.
 ```
@@ -51,8 +55,8 @@ conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvi
 conda install conda-forge::matplotlib
 ```
 **Tip**:
-you don't have to load conda module every time you log in, you can add it to your `.bashrc` file
-also, it's useful to creat short aliases for long commands like so and add them to `.bashrc` as well:
+you don't have to load conda module every time you log in, you can add it to your `.bashrc` file.
+Also, it's useful to creat short aliases for long commands like so and add them to `.bashrc` as well:
 ```
 alias gjobs='squeue -u <username>'
 ```
@@ -83,7 +87,7 @@ wandb login
 ```
 
 ### rsync
-rsync is an alternative to scp that is more efficient for transferring large files or directories,
+`rsync` is an alternative to `scp` that is more efficient for transferring large files or directories,
 and it allows you to synchronize directories between different machines.
 ```
 rsync -avP --delete  --exclude <username>@login1.hpc.ut.ee:/gpfs/space/home/<username>/HPC_practice/data  <username>@login1.hpc.ut.ee:/gpfs/space/home/<username>/HPC_practice/ HPC_practice
@@ -105,7 +109,7 @@ python -m ipykernel install --user --name=<user_env>
 - Don't run resource intensive code  on the login node! (very small scripts are fine)
 - Debug something interactively - `srun` but with small time limit and resources
 - Train/evaluate a long script with expected behaviour - `sbatch`
-- Do not use `srun` for long trainings - the job won't finish when the training ends and the process will hold GPU bot not utilize it
+- Do not use `srun` for long trainings - the job won't finish when the training ends and the process will hold GPU but not utilize it
 - Know how much GPU memory you need 
   - falcon3 - 16Gb; falcon1-2, 4-6 - 32Gb; pegasus - 40Gb; pegasus2 - 80Gb
 

@@ -6,7 +6,7 @@
 #SBATCH --gres=gpu:tesla:1
 #SBATCH --mem=8G
 #SBATCH --cpus-per-task=4
-#SBATCH --output=/gpfs/space/home/dzvenymy/HPC_practice/slurm_logs/slurm_%x.%j.out # STDOUT
+#SBATCH --output=/gpfs/space/home/<username>/HPC_practice/slurm_%x.%j.out # STDOUT
 
 module load cuda/11.7.0 && module load cudnn/8.2.0.53-11.3
 
