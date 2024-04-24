@@ -1,3 +1,5 @@
+# Getting started with University of Tartu HPC
+
 ## HPC setup
 1. SSH into the server
 ```
@@ -77,7 +79,10 @@ tmux kill-session -t <session_name> # kill a session
 ### Interactive job (for debugging)
 ```
 srun --partition=gpu --gres=gpu:tesla:1  -w falcon1 --mem=4G  --time=600 --cpus-per-task=4 --pty /bin/bash
-# or --gres=gpu:a100-40g for A100
+```
+or if you want newer GPU
+```
+srun --partition=gpu --gres=gpu:a100-40g --mem=4G  --time=600 --cpus-per-task=4 --pty /bin/bash
 ```
 
 ### Weights and Biases
